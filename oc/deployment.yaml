@@ -35,6 +35,8 @@ spec:
             secretKeyRef:
               name: counter-database
               key: database-name
+        - name: npm_config_cache
+          value: ./.npm-cache
         ports:
         - containerPort: 5432
           protocol: TCP
