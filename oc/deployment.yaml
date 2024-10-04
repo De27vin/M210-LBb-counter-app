@@ -39,3 +39,10 @@ spec:
         - containerPort: 5432
           protocol: TCP
         resources: {}
+        volumeMounts: 
+          - name: counter-database-data
+          mountPath: /var/lib/pgsql/data
+        volumes: 
+        - name: counter-database-data
+          persistentVolumeClaim:
+            claimName: counter-database-pvc
