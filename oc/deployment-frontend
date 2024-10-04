@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: counter-frontend
+  labels:
+    app: counter-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: counter-frontend
+  template:
+    metadata:
+      labels:
+        app: counter-frontend
+    spec:
+      containers:
+      - name: counter-frontend
+        image: counter-frontend:v1
+        imagePullPolicy: Always
+        env:
+          - name: NAMESPACE
+            value: "my-namespace"
+          - name: BACKEND_URL
+            value: "http://counter-backend"
+        ports:
+        - containerPort: 80
