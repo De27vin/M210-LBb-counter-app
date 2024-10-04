@@ -1,25 +1,41 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: html-openshift-app
+  name: counter-database
   labels:
-    app: html-openshift-app
-    app.kubernetes.io/part-of: html-openshift-app
+    app: counter-app
+    app.kubernetes.io/part-of: counter-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: html-openshift-app
+      app: counter-app
   template:
     metadata:
       labels:
-        app: html-openshift-app
+        app: counter-app
     spec:
       containers:
-      - name: html-openshift-app
-        image: ghcr.io/benschwarz1982/counter-frontend:v1
-        imagePullPolicy: Always
+      - name: counter-database
+      image: registry.redhat.io/rhel8/postgresql-15:latest
+      imagePullPolicy: Always
+      env:
+        - name: POSTGRESQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: counter-database
+              key: database-user
+        - name: POSTGRESQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: counter-database
+              key: database-password
+        - name: POSTGRESQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: counter-database
+              key: database-name
         ports:
-        - containerPort: 8080
+        - containerPort: 5432
           protocol: TCP
         resources: {}
