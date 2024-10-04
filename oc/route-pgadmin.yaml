@@ -8,7 +8,7 @@ spec:
     kind: Service
     name: counter-pgadmin   
   port:
-    targetPort: 80  
+    targetPort: 5050  
   tls:
     termination: edge 
     InsecureEdgeTerminationPolicy: Redirect

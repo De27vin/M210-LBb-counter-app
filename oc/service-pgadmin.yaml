@@ -9,6 +9,6 @@ spec:
     app: counter-pgadmin
   ports:
     - protocol: TCP
-      port: 80  
-      targetPort: 80
+      port: 5050  
+      targetPort: 5050
   type: ClusterIP  

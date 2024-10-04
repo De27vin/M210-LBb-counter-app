@@ -20,7 +20,7 @@ spec:
         image: ghcr.io/modul-i-ch-109/pgadmin4:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 80 
+        - containerPort: 5050
           protocol: TCP
         env:
           - name: PGADMIN_DEFAULT_EMAIL
